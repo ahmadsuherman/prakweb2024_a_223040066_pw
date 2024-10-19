@@ -27,21 +27,15 @@ class Database {
     }
 
     public function bind($param, $value, $type = null) {
-        // var_dump($param, $value, $type); die();
         if(is_null($type)) {
-            // var_dump("ASd"); die(); 
             switch (true) {
-                
                 case is_int($value):
-                    
                     $type = PDO::PARAM_INT;
                     break;
                 case is_bool($value):
-                    
                     $type = PDO::PARAM_BOOL;
                     break;
                 case is_null($value):
-                    
                     $type = PDO::PARAM_NULL;
                     break;
                 default:
@@ -64,5 +58,9 @@ class Database {
     public function single() {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function rowCount() {
+        return $this->stmt->rowCount();
     }
 }
