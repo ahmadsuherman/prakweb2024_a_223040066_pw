@@ -7,14 +7,16 @@
 
     <div class="row">
         <div class="col-6">
-            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#formModal">
-            Tambah Data Mahasiswaa
+            <button type="button" class="btn btn-primary mb-2 tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal">
+            Tambah Data Mahasiswa
             </button>
             <h3>Daftar Mahasiswa</h3>
             <ul class="list-group">
             <?php foreach ($data['mhs'] as $mhs): ?>
             <li class="list-group-item"><?= $mhs['nama']; ?>
                 <a onclick="return confirm('Apakah yakin ingin dihapus?');" href="<?= BASEURL;?>/mahasiswa/hapus/<?= $mhs['id']; ?>" class="badge text-bg-danger float-end me-1">hapus</a>
+                
+                <a href="<?= BASEURL;?>/mahasiswa/ubah/<?= $mhs['id']; ?>" class="badge text-bg-success float-end me-1 tampilModalUbah" data-bs-toggle="modal" data-bs-target="#formModal" data-id="<?= $mhs['id']?>">ubah</a>
                 <a href="<?= BASEURL;?>/mahasiswa/detail/<?= $mhs['id']; ?>" class="badge text-bg-primary float-end me-1">detail</a>
             </li>
             <?php endforeach; ?>
@@ -23,16 +25,18 @@
     </div>
 </div>
 
-<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="judulModal" aria-hidden="true">
+<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="judulModal">Tambah Data Mahasiswa</h1>
+        <h1 class="modal-title fs-5" id="formModalLabel">Tambah Data Mahasiswa</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-
-      <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="post">
+      
       <div class="modal-body">  
+      <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="post">
+
+        <input type="hidden" name="id" id="id">
         <div class="mb-3">
             <div class="form-group">
                 <label for="nama">Nama</label>
@@ -55,7 +59,7 @@
         </div>
 
         <div class="form-group">
-          <label for="jurusan" id="jurusan">Jurusan</label>
+          <label for="jurusan">Jurusan</label>
           <select id="jurusan" class="form-control" name="jurusan">
             <option value="Teknik Informatika">Teknik Informatika</option>
             <option value="Teknik Mesin">Teknik Mesin</option>
