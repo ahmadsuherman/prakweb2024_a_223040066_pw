@@ -1,5 +1,11 @@
 <div class="container mt-4">
     <div class="row">
+        <div class="col-lg-6">
+            <?php Flasher::flash(); ?>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-6">
             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#formModal">
             Tambah Data Mahasiswaa
@@ -58,7 +64,7 @@
           </select>
         </div>
       </div>
-      
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Tambah Data</button>
